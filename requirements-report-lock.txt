@@ -1,0 +1,5 @@
+# PDF rendering dependencies; install into .tools/report-packages.
+# Pillow is provided by requirements-lock.txt.
+reportlab==4.4.10
+charset-normalizer==3.4.4
+pypdf==6.1.3

@@ -1,0 +1,13 @@
+.venv/
+.cache/
+.config/
+.local/
+.tmp/
+.tools/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+lean/.lake/
