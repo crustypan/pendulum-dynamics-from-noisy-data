@@ -1,0 +1,37 @@
+{
+  "completed_at_utc": "2026-11-07T07:20:27.985567+00:00",
+  "phase": 2,
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "pytest": "9.2.0"
+  },
+  "source_sha256": {
+    "requirements-lock.txt": "e4e5f7f33719a88e641bdbad113dc2701de2723a0bc94e751601085a9a7dc19e",
+    "scripts/run_noise_experiments.py": "4e16ced76d8ebee6c0c57999b42056a855740723f6e6ea7719bdab1fa9574c77",
+    "src/pendulum_research/__init__.py": "9cb15faaf7d49e531adc5cedf4a551b151f2fa72f0c970d7510fd423801c4683",
+    "src/pendulum_research/data_generation.py": "238afa169f453cb0969830f12478386b1c70b6468782df751f21ac79e6e2e4d3",
+    "src/pendulum_research/evaluation.py": "64f08147c516070e50bf87b5759ddf65f58ec12e280956fea63b58721bc3fa59",
+    "src/pendulum_research/models.py": "63f0c40c0ff4c66c6a12ee887fe2c882039a931986d0ff92df819cdfb07b152c",
+    "src/pendulum_research/noise.py": "3155ac6db4280ee1ce9fa124ade945b556ebd7e54c5756b1e2f46c05b8e16b0a",
+    "src/pendulum_research/noise_reporting.py": "a52bd48a151dc6b724995c0b9feb3de74cdcbd04c53b3d190c55e02a48a76bb2",
+    "src/pendulum_research/noise_study.py": "916ae56acca1efcb8ed6514e7d046235b31bcd1c770e8eb8acce84e006a0b1fb",
+    "src/pendulum_research/physics.py": "63c67f3cae13e9b1c9be8cc995b7e0497f3894285f65678ebe813293d4db44b9",
+    "src/pendulum_research/sindy.py": "addd478ed11d79292b063bcf701192cb21a297dabd42443574f27fb70ce9ab11",
+    "src/pendulum_research/visualization.py": "259aee3f2c1b4e9088c911b696785220fe646ed39fa92467734ac87c366b3f8a"
+  },
+  "validation_freeze_sha256": "6de34dcc21cbc4deb28bcc092f1630e18e4b190cc059998ebc2f42d92edcdd41",
+  "reference_trajectories": 9,
+  "intended_models": 244,
+  "selected_models": 244,
+  "test_rollouts": 732,
+  "test_rollouts_completed": 634,
+  "derivative_cases": 488,
+  "derivative_checks": 488,
+  "runtime": {
+    "cpu_quota_fraction_of_one_core": 0.5,
+    "memory_limit_gib": 1,
+    "network": "isolated"
+  }
+}

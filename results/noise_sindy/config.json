@@ -1,0 +1,71 @@
+{
+  "phase": 2,
+  "noise_std_deg": [
+    0,
+    0.5,
+    2,
+    5
+  ],
+  "seed": {
+    "master": 20261107,
+    "noiseless_replicate": 0,
+    "noisy_replicates": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "bit_generator": "PCG64"
+  },
+  "preprocessing": {
+    "savgol_windows": [
+      21,
+      31,
+      41
+    ],
+    "savgol_orders": [
+      2,
+      3,
+      4
+    ],
+    "trim_per_end": 20
+  },
+  "stlsq": {
+    "ridge_alpha": 1e-08,
+    "thresholds": [
+      0,
+      0.005,
+      0.02,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1
+    ]
+  },
+  "validation": {
+    "score": "mean_rollout_angle_rmse_against_noisy_validation",
+    "tie_tolerance_rad": 1e-10
+  },
+  "rollout": {
+    "angle_limit_rad": 6.283185307179586,
+    "speed_limit_rad_s": 100
+  },
+  "reference_config": "configs/baseline.json"
+}

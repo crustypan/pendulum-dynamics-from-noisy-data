@@ -1,0 +1,17 @@
+noise_std_deg,comparison,condition,intended_pairs,rmse_difference_rad_n,rmse_difference_rad_mean,rmse_difference_rad_sd
+0.0,savgol_minus_direct,training_A,1,1,-0.0007598438323211749,
+0.0,savgol_minus_direct,training_B,1,1,-0.000601239693050944,
+0.0,training_B_minus_A,direct,1,1,-0.00012500037740895576,
+0.0,training_B_minus_A,savgol,1,1,3.360376186127513e-05,
+0.5,savgol_minus_direct,training_A,20,10,-0.6890628840054035,0.6022476775124683
+0.5,savgol_minus_direct,training_B,20,20,-0.8049097056096843,0.3364597074059645
+0.5,training_B_minus_A,direct,20,10,-0.04625819453452055,0.09904418371704737
+0.5,training_B_minus_A,savgol,20,20,0.03570953015655252,0.6653567700135458
+2.0,savgol_minus_direct,training_A,20,0,,
+2.0,savgol_minus_direct,training_B,20,17,-0.6170524029088357,0.3737685813810725
+2.0,training_B_minus_A,direct,20,0,,
+2.0,training_B_minus_A,savgol,20,16,-0.21474943033408045,0.5784001364111846
+5.0,savgol_minus_direct,training_A,20,0,,
+5.0,savgol_minus_direct,training_B,20,20,-0.5719332583590638,0.2886381578659999
+5.0,training_B_minus_A,direct,20,0,,
+5.0,training_B_minus_A,savgol,20,20,-0.4963656618020163,0.28705080088393164
