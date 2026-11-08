@@ -1,0 +1,33 @@
+{
+  "phase": 3,
+  "completed_at_utc": "2026-11-07T08:02:17.499107+00:00",
+  "physical_k_s2": 9.81,
+  "intended_rollouts": 732,
+  "frozen_models": 244,
+  "nominal_completed": 634,
+  "tight_completed": 634,
+  "status_changes": 0,
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9"
+  },
+  "source_sha256": {
+    "scripts/run_energy_analysis.py": "16088abccb621ffaaf0b12bb43af7815c676f46badf43f6647e01005bc22d267",
+    "requirements-lock.txt": "e4e5f7f33719a88e641bdbad113dc2701de2723a0bc94e751601085a9a7dc19e",
+    "lean/Pendulum/Energy.lean": "b9dfc677d7f3097de15277f9b017c74e2a3903c34c8a95759f34f4e14ad8407f",
+    "lean/Pendulum/FrozenModels.lean": "2993947a6341724fa2a244d853c1a8fd8d8fc7c41f5c70a65d1af79313756440",
+    "src/pendulum_research/__init__.py": "9cb15faaf7d49e531adc5cedf4a551b151f2fa72f0c970d7510fd423801c4683",
+    "src/pendulum_research/data_generation.py": "238afa169f453cb0969830f12478386b1c70b6468782df751f21ac79e6e2e4d3",
+    "src/pendulum_research/energy.py": "744370b19c7cbb214e044beb0c03192cca920aa57bfe36db58509e663922eb59",
+    "src/pendulum_research/energy_reporting.py": "c76ba3d619bf803c007faf26d357c509fc7d8665dc2092a31e47a10956051664",
+    "src/pendulum_research/evaluation.py": "64f08147c516070e50bf87b5759ddf65f58ec12e280956fea63b58721bc3fa59",
+    "src/pendulum_research/models.py": "63f0c40c0ff4c66c6a12ee887fe2c882039a931986d0ff92df819cdfb07b152c",
+    "src/pendulum_research/noise.py": "3155ac6db4280ee1ce9fa124ade945b556ebd7e54c5756b1e2f46c05b8e16b0a",
+    "src/pendulum_research/noise_reporting.py": "a52bd48a151dc6b724995c0b9feb3de74cdcbd04c53b3d190c55e02a48a76bb2",
+    "src/pendulum_research/noise_study.py": "916ae56acca1efcb8ed6514e7d046235b31bcd1c770e8eb8acce84e006a0b1fb",
+    "src/pendulum_research/physics.py": "63c67f3cae13e9b1c9be8cc995b7e0497f3894285f65678ebe813293d4db44b9",
+    "src/pendulum_research/sindy.py": "addd478ed11d79292b063bcf701192cb21a297dabd42443574f27fb70ce9ab11",
+    "src/pendulum_research/visualization.py": "259aee3f2c1b4e9088c911b696785220fe646ed39fa92467734ac87c366b3f8a"
+  }
+}

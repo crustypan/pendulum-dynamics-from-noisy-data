@@ -1,0 +1,11 @@
+{
+  "results/noise_sindy/config.json": "4b75a1be157544bec512a6d51a4d45889085b5f830d1cc4a6cd4409284e3dbdc",
+  "results/noise_sindy/reference_config.json": "5dd9a8a508675ed999b55d7af7737ba02f9599dd2a6ffe06da3985b460e61c8b",
+  "results/noise_sindy/reference.npz": "6c76b4ac40fc2ebfc2a734a48c5174ae478a8d39a4d6cd372ecb1c0ba1f346af",
+  "results/noise_sindy/selected_models.csv": "50f9bf6831b7794b281f7754fa8a85cf41b3c85efd0a49089581cde4387f4c9a",
+  "results/noise_sindy/selection_frozen.json": "6de34dcc21cbc4deb28bcc092f1630e18e4b190cc059998ebc2f42d92edcdd41",
+  "results/noise_sindy/test_metrics.csv": "ea129d8e6e245c0d74cb7578e84b6f46099fd154606b783bf95a340559806f04",
+  "results/noise_sindy/test_predictions.npz": "7c36de9831fbf9d9cb283133e608351e2ffe4ac5e2e04b2d76e96ed74f8795a0",
+  "results/baseline/models.json": "5e970b19fd48916046ac582cd1e3f66b6d2bebeaacf645a838d87f741b86b467",
+  "results/baseline/predictions.csv": "67bced8924e080e3cbf34b4b1c3e42e55223357434382f1676cef1d0e35700c0"
+}
