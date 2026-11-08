@@ -1,0 +1,53 @@
+{
+  "physics": {
+    "gravity_m_s2": 9.81,
+    "length_m": 1,
+    "initial_omega_rad_s": 0
+  },
+  "simulation": {
+    "duration_s": 10,
+    "dt_s": 0.02,
+    "rtol": 1e-11,
+    "atol": 1e-13,
+    "max_step_s": 0.1
+  },
+  "splits": {
+    "training_A": [
+      5,
+      15,
+      30
+    ],
+    "training_B": [
+      5,
+      15,
+      30,
+      60
+    ],
+    "validation": [
+      10,
+      20
+    ],
+    "test": [
+      45,
+      75,
+      90
+    ]
+  },
+  "fitting": {
+    "derivative_stencil": "five_point_central",
+    "endpoint_samples_discarded": 2
+  },
+  "verification": {
+    "reference_relative_energy_limit": 1e-8,
+    "period_absolute_error_limit_s": 1e-8,
+    "tolerance_refinement_angle_limit_rad": 1e-8
+  },
+  "protocol": {
+    "phase": 1,
+    "observation": "theta_only",
+    "noise_std_deg": 0,
+    "validation_use": "audit_only_no_hyperparameters",
+    "test_use": "evaluation_only",
+    "aggregation": "per_trajectory"
+  }
+}
