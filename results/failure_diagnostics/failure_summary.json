@@ -1,0 +1,135 @@
+{
+  "status": "completed",
+  "run_at_utc": "2026-11-07T08:43:15.570428+00:00",
+  "archived_model_count": 244,
+  "test_rollouts": 732,
+  "archived_guard_stops": 98,
+  "models_with_guard_stop": 55,
+  "stops_by_initial_angle_deg": {
+    "45": 1,
+    "75": 42,
+    "90": 55
+  },
+  "stops_by_method": {
+    "direct": 90,
+    "savgol": 8
+  },
+  "stops_by_velocity_term_sign": {
+    "zero": 58,
+    "positive": 13,
+    "negative": 27
+  },
+  "stops_by_rest_direction": {
+    "inward": 90,
+    "outward": 8
+  },
+  "completions_by_rest_direction": {
+    "inward": 595,
+    "outward": 39
+  },
+  "nominal_guard_type": {
+    "speed": 98
+  },
+  "tight_guard_type": {
+    "speed": 98
+  },
+  "guard_type_agreement": 98,
+  "max_stop_time_gap_s": 3.14759773800688e-10,
+  "median_stop_time_gap_s": 5.1199279191282976e-15,
+  "median_tight_stop_time_s": 0.0019288697570456572,
+  "minimum_tight_stop_time_s": 0.0004654768542644575,
+  "lowest_validation_rmse_stop": {
+    "prediction_index": 311,
+    "model_id": "trial025_B_savgol",
+    "seed": 4,
+    "training_set": "training_B",
+    "method": "savgol",
+    "noise_std_deg": 2.0,
+    "angle_deg": 90.0,
+    "coverage": "extrapolation",
+    "status": "state_limit",
+    "support": "theta+theta_cubed+sin_theta",
+    "validation_rmse_rad": 0.04073745054008359,
+    "c_theta": -326.9400241357218,
+    "c_theta_cubed": 51.70573743814507,
+    "c_sin_theta": 317.2377947266445,
+    "c_omega": 0.0,
+    "reference_rest_acceleration_rad_s2": -9.81,
+    "fitted_rest_acceleration_rad_s2": 4.081905852775719,
+    "fitted_rest_direction": "outward",
+    "velocity_term_sign": "zero",
+    "linear_taylor_coefficient": -9.70222940907729,
+    "cubic_taylor_coefficient": -1.1672283496290135,
+    "opposing_linear_sine_scale": 317.2377947266445,
+    "nominal_guard": "speed",
+    "nominal_stop_s": 0.49013524629424676,
+    "nominal_stop_theta_rad": 5.160253666982116,
+    "nominal_stop_omega_rad_s": 100.00000000000009,
+    "tight_guard": "speed",
+    "tight_stop_s": 0.49013524629381783,
+    "tight_stop_theta_rad": 5.160253666986087,
+    "tight_stop_omega_rad_s": 99.99999999999993,
+    "stop_time_absolute_gap_s": 4.2893466556392923e-13,
+    "trigger_agreement": 1
+  },
+  "lowest_validation_rmse_stop_group": {
+    "model_count": 20,
+    "validation_rmse_median_rad": 0.03746628934412433,
+    "one_based_validation_rank": 13,
+    "model_count_with_stop": 3
+  },
+  "largest_opposing_coefficient_stop": {
+    "prediction_index": 685,
+    "model_id": "trial057_A_direct",
+    "seed": 16,
+    "training_set": "training_A",
+    "method": "direct",
+    "noise_std_deg": 5.0,
+    "angle_deg": 75.0,
+    "coverage": "extrapolation",
+    "status": "state_limit",
+    "support": "theta+theta_cubed+sin_theta+omega",
+    "validation_rmse_rad": 0.22543124272886672,
+    "c_theta": 3517692.9619770693,
+    "c_theta_cubed": -574596.2458055908,
+    "c_sin_theta": -3519132.0724357395,
+    "c_omega": -0.4625540613984838,
+    "reference_rest_acceleration_rad_s2": -9.47573235589576,
+    "fitted_rest_acceleration_rad_s2": -83350.90669508884,
+    "fitted_rest_direction": "inward",
+    "velocity_term_sign": "negative",
+    "linear_taylor_coefficient": -1439.110458670184,
+    "cubic_taylor_coefficient": 11925.766267032479,
+    "opposing_linear_sine_scale": 3517692.9619770693,
+    "nominal_guard": "speed",
+    "nominal_stop_s": 0.0013211594266961894,
+    "nominal_stop_theta_rad": 1.2397077470867244,
+    "nominal_stop_omega_rad_s": -100.00000000000301,
+    "tight_guard": "speed",
+    "tight_stop_s": 0.0013211594266959292,
+    "tight_stop_theta_rad": 1.2397077470866558,
+    "tight_stop_omega_rad_s": -99.99999999999945,
+    "stop_time_absolute_gap_s": 2.6020852139652106e-16,
+    "trigger_agreement": 1
+  },
+  "central_acceleration_noise_sd_rad_s2": {
+    "0.5": 53.43957625674433,
+    "2": 213.75830502697733,
+    "5": 534.3957625674433
+  },
+  "limits": {
+    "angle_limit_rad": 6.283185307179586,
+    "speed_limit_rad_s": 100
+  },
+  "input_sha256": {
+    "results/noise_sindy/config.json": "4b75a1be157544bec512a6d51a4d45889085b5f830d1cc4a6cd4409284e3dbdc",
+    "results/noise_sindy/reference_config.json": "5dd9a8a508675ed999b55d7af7737ba02f9599dd2a6ffe06da3985b460e61c8b",
+    "results/noise_sindy/selected_models.csv": "50f9bf6831b7794b281f7754fa8a85cf41b3c85efd0a49089581cde4387f4c9a",
+    "results/noise_sindy/test_metrics.csv": "ea129d8e6e245c0d74cb7578e84b6f46099fd154606b783bf95a340559806f04",
+    "results/noise_sindy/selection_frozen.json": "6de34dcc21cbc4deb28bcc092f1630e18e4b190cc059998ebc2f42d92edcdd41",
+    "results/noise_sindy/summary.csv": "d075f24d3a790d7d80ff328d661d6cecac9cc3fdd9a09796667ae2d8db1344b5",
+    "results/energy_drift/config.json": "a4791babf646bf38843490d3dc84462625be76bef0e36e1382aaf82d2bfae03c",
+    "results/energy_drift/trajectory_energy.csv": "e03e7dfd9d0adb127ed70c8c1790bcdbc07801739e44660ca4a918d9ed6fc69b"
+  },
+  "script_sha256": "666a6fe061c168d6bc7a9aba299622ffd0767f224c23b6590a067378833d67e1"
+}
