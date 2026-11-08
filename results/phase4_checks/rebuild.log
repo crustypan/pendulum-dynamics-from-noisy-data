@@ -1,0 +1,5 @@
+{
+  "research_report.pdf": 6,
+  "research_highlight.pdf": 1
+}
+Both PDFs and the build receipt match the isolated rebuild byte for byte.

@@ -1,0 +1,20 @@
+{
+  "status": "verified",
+  "artifact_checksums": {
+    "baseline": 10,
+    "noise_sindy": 19,
+    "energy_drift": 12,
+    "failure_diagnostics": 5
+  },
+  "lean_theorems": 13,
+  "frozen_model_sha256": "50f9bf6831b7794b281f7754fa8a85cf41b3c85efd0a49089581cde4387f4c9a",
+  "test_release_records": 732,
+  "speed_guard_replays_checked": 98,
+  "pdf_pages": {
+    "research_report.pdf": 6,
+    "research_highlight.pdf": 1
+  },
+  "relative_links_checked": 68,
+  "largest_versionable_file": "results/energy_drift/energy_traces.npz",
+  "largest_versionable_file_bytes": 9311934
+}

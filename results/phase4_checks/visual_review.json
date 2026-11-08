@@ -1,0 +1,65 @@
+{
+  "status": "reviewed",
+  "render_tool": "pdftoppm -r 118 -png",
+  "reviewed_pages": {
+    "report-1.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "4e71731f50e0a499edd2937db066313ff053ee4c23d93a081fd962945f00708d"
+    },
+    "report-2.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "3620ce9d8460d40c7b4cc45c33ec3f0ceeae4633cf3fc528c0d43bc3f29956c4"
+    },
+    "report-3.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "148b5b0d01eadf9c007c6170fce747ccd36b47b73a7ad7bf465571d159ddfba2"
+    },
+    "report-4.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "d4c3238cd2d0c615491de566236dd00b0122b2fc38afd5a80544e10a892bdb51"
+    },
+    "report-5.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "a57bc5e9be0b7a2e2ab3d9b5001ffeb13eb6b4721fbccb0a5ffc9121eb6c225a"
+    },
+    "report-6.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "23f08246fb024c6a82af91577254864c03f53c4a8c11911e338b339adca79c1f"
+    },
+    "highlight-1.png": {
+      "dimensions_px": [
+        976,
+        1380
+      ],
+      "sha256": "5e913254d40845e5b23c2283e5ac8cfeb67c9e888127dd3e534c75bd0feb7196"
+    }
+  },
+  "pdf_sha256": {
+    "research_report.pdf": "9d2e39a8580465dbddb22161e3c120492b296b639e9f74da010df2ad1d754745",
+    "research_highlight.pdf": "f3423606ba5b65def7ec2b290c0365cdf3d75f99c07b57627a76645b6de71b39"
+  },
+  "review_notes": "Checked all pages for page flow, clipping, symbols, caption and axis readability. The revised release marker is inside the plot bounds.",
+  "diagnostic_csv_sha256_matching_two_runs": {
+    "release_diagnostics.csv": "4362bfa64f0ea66b8ac54b3b0089c432c8e6d5f96153af2c3f4911233e95bc18",
+    "guard_replays.csv": "8b93d9ca209ecfa7c3b7390124e34afdcc0652ea54439d8aa6bd8985adc66a2f",
+    "failure_by_condition.csv": "1822d88437b3b2a6baaec1b8f05527ecb568ee4a4080a8b2e43b2264ec22282c"
+  }
+}
