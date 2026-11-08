@@ -1,0 +1,15 @@
+import Pendulum
+
+#print axioms Pendulum.physicalEnergy_hasDerivAt
+#print axioms Pendulum.linear_physicalEnergy_hasDerivAt
+#print axioms Pendulum.sinusoidal_physicalEnergy_hasDerivAt
+#print axioms Pendulum.truePendulum_physicalEnergy_hasDerivAt_zero
+#print axioms Pendulum.truePendulum_physicalEnergy_eq_on_Icc
+#print axioms Pendulum.linearEnergy_hasDerivAt_zero
+#print axioms Pendulum.linearEnergy_eq_on_Icc
+#print axioms Pendulum.polynomialEnergy_hasDerivAt_zero
+#print axioms Pendulum.sindy_physicalEnergy_hasDerivAt
+#print axioms Pendulum.sindy_modelEnergy_hasDerivAt
+#print axioms Pendulum.sindyPhysicalRate_zero_everywhere_iff
+#print axioms Pendulum.FrozenModels.coefficient_count
+#print axioms Pendulum.FrozenModels.physicalEnergy_hasDerivAt_for_model
