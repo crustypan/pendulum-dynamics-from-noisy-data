@@ -1,0 +1,127 @@
+{
+  "status": "verified",
+  "lean": "Lean (version 4.24.0, x86_64-unknown-linux-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)",
+  "lake": "Lake version 5.0.0-src+797c613 (Lean version 4.24.0)",
+  "mathlib_revision": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+  "packages": {
+    "mathlib": {
+      "revision": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+      "url": "https://github.com/leanprover-community/mathlib4.git"
+    },
+    "plausible": {
+      "revision": "dfd06ebfe8d0e8fa7faba9cb5e5a2e74e7bd2805",
+      "url": "https://github.com/leanprover-community/plausible"
+    },
+    "LeanSearchClient": {
+      "revision": "99657ad92e23804e279f77ea6dbdeebaa1317b98",
+      "url": "https://github.com/leanprover-community/LeanSearchClient"
+    },
+    "importGraph": {
+      "revision": "d768126816be17600904726ca7976b185786e6b9",
+      "url": "https://github.com/leanprover-community/import-graph"
+    },
+    "proofwidgets": {
+      "revision": "556caed0eadb7901e068131d1be208dd907d07a2",
+      "url": "https://github.com/leanprover-community/ProofWidgets4"
+    },
+    "aesop": {
+      "revision": "725ac8cd67acd70a7beaf47c3725e23484c1ef50",
+      "url": "https://github.com/leanprover-community/aesop"
+    },
+    "Qq": {
+      "revision": "dea6a3361fa36d5a13f87333dc506ada582e025c",
+      "url": "https://github.com/leanprover-community/quote4"
+    },
+    "batteries": {
+      "revision": "8da40b72fece29b7d3fe3d768bac4c8910ce9bee",
+      "url": "https://github.com/leanprover-community/batteries"
+    },
+    "Cli": {
+      "revision": "91c18fa62838ad0ab7384c03c9684d99d306e1da",
+      "url": "https://github.com/leanprover/lean4-cli"
+    }
+  },
+  "lean_release_asset": {
+    "url": "https://github.com/leanprover/lean4/releases/download/v4.24.0/lean-4.24.0-linux.tar.zst",
+    "sha256": "b14f5e5159219dd1a1956c3b806813319f5e94ccd5bdfd56f54520609a5bb5ec",
+    "version": "Lean (version 4.24.0, x86_64-unknown-linux-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)"
+  },
+  "theorem_count": 13,
+  "theorem_axioms": {
+    "Pendulum.physicalEnergy_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.linear_physicalEnergy_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.sinusoidal_physicalEnergy_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.truePendulum_physicalEnergy_hasDerivAt_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.truePendulum_physicalEnergy_eq_on_Icc": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.linearEnergy_hasDerivAt_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.linearEnergy_eq_on_Icc": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.polynomialEnergy_hasDerivAt_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.sindy_physicalEnergy_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.sindy_modelEnergy_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.sindyPhysicalRate_zero_everywhere_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.FrozenModels.coefficient_count": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Pendulum.FrozenModels.physicalEnergy_hasDerivAt_for_model": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "source_sha256": {
+    "lean/Audit.lean": "f891a7901acc7d41a94c4fb862226d2dcb35a012c118346ca0764355f18ae02d",
+    "lean/Pendulum/Energy.lean": "b9dfc677d7f3097de15277f9b017c74e2a3903c34c8a95759f34f4e14ad8407f",
+    "lean/Pendulum/FrozenModels.lean": "2993947a6341724fa2a244d853c1a8fd8d8fc7c41f5c70a65d1af79313756440",
+    "lean/Pendulum.lean": "7fb2f8f0f8e9f888a7952bead4c10a6130a0a493d25f16f0a3c1e6638f369d42",
+    "lean/lakefile.toml": "3e1a4793ca6ba368a62f21f4c00d83ae69aa582bc382d891010e0599e8727414",
+    "lean/lean-toolchain": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+    "lean/lake-manifest.json": "c839b9a8f9cd102b649a120f3193763c99f708f74f14a457b7a39fd09bbd5ab7"
+  },
+  "frozen_coefficients_sha256": "50f9bf6831b7794b281f7754fa8a85cf41b3c85efd0a49089581cde4387f4c9a"
+}

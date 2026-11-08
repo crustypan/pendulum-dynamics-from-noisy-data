@@ -1,0 +1,4 @@
+$ python3 -B scripts/run_lean.py -- lake --version
+Lake version 5.0.0-src+797c613 (Lean version 4.24.0)
+
+exit_code=0

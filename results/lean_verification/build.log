@@ -1,0 +1,4 @@
+$ python3 -B scripts/run_lean.py -- lake build
+Build completed successfully (2036 jobs).
+
+exit_code=0

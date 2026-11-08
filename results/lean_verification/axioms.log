@@ -1,0 +1,16 @@
+$ python3 -B scripts/run_lean.py -- lake env lean -DwarningAsError=true lean/Audit.lean
+'Pendulum.physicalEnergy_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.linear_physicalEnergy_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.sinusoidal_physicalEnergy_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.truePendulum_physicalEnergy_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.truePendulum_physicalEnergy_eq_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.linearEnergy_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.linearEnergy_eq_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.polynomialEnergy_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.sindy_physicalEnergy_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.sindy_modelEnergy_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.sindyPhysicalRate_zero_everywhere_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.FrozenModels.coefficient_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pendulum.FrozenModels.physicalEnergy_hasDerivAt_for_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+exit_code=0

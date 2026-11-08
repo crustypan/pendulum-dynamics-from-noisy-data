@@ -1,0 +1,4 @@
+$ python3 -B scripts/generate_frozen_lean.py --check
+Frozen coefficient export matches Phase 2.
+
+exit_code=0
