@@ -1,0 +1,79 @@
+{
+  "saved_run_verification": "passed",
+  "reloaded_models": 6,
+  "reference_trajectories": 9,
+  "verified_metric_rows": 51,
+  "verified_source_hashes": 14,
+  "summary": {
+    "training_A": {
+      "M1": {
+        "a": 9.535493722675909,
+        "b": null,
+        "mean_test_rmse_rad": 1.073036638167802,
+        "test_rmse_by_angle_rad": {
+          "45": 0.24722681323682058,
+          "75": 1.241629841351262,
+          "90": 1.7302532599153233
+        },
+        "mean_test_period_relative_error": 0.08630432980839535
+      },
+      "M2": {
+        "a": 9.809998364690076,
+        "b": null,
+        "mean_test_rmse_rad": 1.175206551341626e-06,
+        "test_rmse_by_angle_rad": {
+          "45": 8.202954496470328e-07,
+          "75": 1.275616176750854e-06,
+          "90": 1.4297080276269914e-06
+        },
+        "mean_test_period_relative_error": 8.334912559671016e-08
+      },
+      "M3": {
+        "a": 9.8087901613671,
+        "b": -1.6102146715186223,
+        "mean_test_rmse_rad": 0.14787899861079698,
+        "test_rmse_by_angle_rad": {
+          "45": 0.0049229676584469475,
+          "75": 0.11677731167688095,
+          "90": 0.32193671649706307
+        },
+        "mean_test_period_relative_error": 0.009219840866188605
+      }
+    },
+    "training_B": {
+      "M1": {
+        "a": 8.755091712853515,
+        "b": null,
+        "mean_test_rmse_rad": 0.8421957997739509,
+        "test_rmse_by_angle_rad": {
+          "45": 0.16886497814493964,
+          "75": 0.7878473722737035,
+          "90": 1.5698750489032096
+        },
+        "mean_test_period_relative_error": 0.058348585133666725
+      },
+      "M2": {
+        "a": 9.809998467086672,
+        "b": null,
+        "mean_test_rmse_rad": 1.101619817774826e-06,
+        "test_rmse_by_angle_rad": {
+          "45": 7.689318149076656e-07,
+          "75": 1.1957421751370203e-06,
+          "90": 1.3401854632797923e-06
+        },
+        "mean_test_period_relative_error": 7.813014785585325e-08
+      },
+      "M3": {
+        "a": 9.792630856948437,
+        "b": -1.5393076952582945,
+        "mean_test_rmse_rad": 0.074105820793201,
+        "test_rmse_by_angle_rad": {
+          "45": 0.004233999385926175,
+          "75": 0.0406225316967672,
+          "90": 0.1774609312969096
+        },
+        "mean_test_period_relative_error": 0.004544192099110149
+      }
+    }
+  }
+}

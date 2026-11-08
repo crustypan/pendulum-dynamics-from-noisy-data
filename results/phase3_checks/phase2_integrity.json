@@ -1,0 +1,11 @@
+{
+  "status": "verified",
+  "regenerated_observation_trials": 61,
+  "frozen_model_cases": 244,
+  "validation_candidates_audited": 9760,
+  "test_rollouts_audited": 732,
+  "completed_test_rollouts": 634,
+  "artifact_checksums": "passed",
+  "source_checksums": "passed",
+  "summary_statistics": "passed"
+}
