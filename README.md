@@ -8,6 +8,36 @@ This independent research project asks whether a dynamical model learned from no
 
 All observations are synthetic. The candidate library includes the sine term. Support recovery measures whether the method selects that supplied term without extra terms.
 
+## Results at a glance
+
+Click any figure to open the full-size PNG. All four figures come from the archived experiments.
+
+### 1. Predicting motion at unseen release angles
+
+[![Held-out angle RMSE for linear, sine and cubic pendulum models at 45, 75 and 90 degrees](figures/baseline/test_rmse.png)](figures/baseline/test_rmse.png)
+
+The fitted sine model averages about 1.1–1.2 × 10⁻⁶ rad in held-out angle RMSE. The linear and cubic fits have larger errors at higher release angles.
+
+### 2. Recovering an equation from noisy angles
+
+[![Noise robustness of SINDy showing test error, sine-only recovery, coefficient error and completion](figures/noise_sindy/noise_robustness.png)](figures/noise_sindy/noise_robustness.png)
+
+Of 120 noisy fits per method, Savitzky–Golay recovered sine-only support in 31; central differences recovered it in 0. The test RMSE panel includes only seeds that completed all three test angles.
+
+### 3. Comparing fitted and physical energy
+
+[![At 90 degrees the linear model has small variation in its own energy and large variation in physical energy](figures/energy_drift/baseline_conservation.png)](figures/energy_drift/baseline_conservation.png)
+
+At 90° with Training A, the linear model's own energy changes by at most 4.16 × 10⁻¹¹ of its initial value in the sampled trajectory. The corresponding physical energy change is 20.0%. See the [Lean energy proofs](lean/Pendulum/Energy.lean) and [SINDy drift comparison](figures/energy_drift/physical_energy_drift.png).
+
+### 4. Diagnosing failed SINDy predictions
+
+[![Fitted and reference release accelerations and guard stops by held-out release angle](figures/failure_diagnostics/failure_mechanisms.png)](figures/failure_diagnostics/failure_mechanisms.png)
+
+Both solver settings reproduced the 100 rad/s speed limit in all 98 stopped rollouts; 97 began at 75° or 90°. The left panel shows a fit that predicts outward acceleration at 90° despite low validation error.
+
+See the [figure and evidence index](report/README.md#figure-and-evidence-index) for the other plots and their source data.
+
 ## What the study found
 
 - **Phase 1 — baselines.** The fitted sine model has a mean held-out angle RMSE of about 1.1e-6 rad. The linear model's own energy is conserved in its exact dynamics, while its sampled physical energy varies by 20.0% at a 90° release in Training A.
