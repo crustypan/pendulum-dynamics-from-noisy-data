@@ -1,0 +1,18 @@
+{
+  "selection_frozen_sha256": "ce42c73f8152c7b924fd64cac7a6d0e9f6c34c37f25bbe5b0c06ea3d17fb73bd",
+  "file_sha256": {
+    "test_metrics.csv": "0c1e977dd858f2ae32b56c4ab21a3f9f8a5acbf2bcd4cb08003918242969744a",
+    "model_metrics.csv": "d3dcc1c74d75a0b437a08262ed684bf436cd2254d67e55fc4650131a0afd3f6e",
+    "test_reference.npz": "cb5e46d0739e32828f8363eea502291aa329982b8f9859767cb92ea85ae1e8a2",
+    "test_predictions.npz": "4b990f37279f7ad9083917da20afa90c6052af23b59606bd10eaa0ba6dc87396",
+    "tolerance_audit.csv": "17d9687359ccb533bf646c410fc48b1523877b021dd130a9aa790f33dc65d06c"
+  },
+  "model_cases": 366,
+  "planned_test_rollouts": 1098,
+  "primary_rollouts": 732,
+  "reference_max_relative_physical_energy_drift": {
+    "50": 3.413929571029174e-11,
+    "80": 2.890528319054992e-11,
+    "95": 3.305190308170152e-11
+  }
+}

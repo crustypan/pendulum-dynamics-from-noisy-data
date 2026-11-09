@@ -1,0 +1,35 @@
+{
+  "source_sha256": {
+    "phase5/PROTOCOL.md": "7f66f212a8ca09140002f9f32f9f3ae758780dbe0422a799979a5103a82e3050",
+    "phase5/experiment.py": "8d89e2ac8aafce992db4d3e1fdefe4ed9cec8c0bbde796901517327bff6d2635",
+    "phase5/weak.py": "512206c63079295c28eff9fbcd930285246f153a407b3af4bda3fa13829c78c2",
+    "phase5/run_isolated.py": "03aa69acb3feae237107168274dbe0743c80b0bc456e887551b29a35d3a2ab6c",
+    "requirements-lock.txt": "e4e5f7f33719a88e641bdbad113dc2701de2723a0bc94e751601085a9a7dc19e",
+    "src/pendulum_research/__init__.py": "9cb15faaf7d49e531adc5cedf4a551b151f2fa72f0c970d7510fd423801c4683",
+    "src/pendulum_research/evaluation.py": "64f08147c516070e50bf87b5759ddf65f58ec12e280956fea63b58721bc3fa59",
+    "src/pendulum_research/noise.py": "3155ac6db4280ee1ce9fa124ade945b556ebd7e54c5756b1e2f46c05b8e16b0a",
+    "src/pendulum_research/noise_study.py": "916ae56acca1efcb8ed6514e7d046235b31bcd1c770e8eb8acce84e006a0b1fb",
+    "src/pendulum_research/physics.py": "63c67f3cae13e9b1c9be8cc995b7e0497f3894285f65678ebe813293d4db44b9",
+    "src/pendulum_research/sindy.py": "addd478ed11d79292b063bcf701192cb21a297dabd42443574f27fb70ce9ab11"
+  },
+  "config_source_sha256": "eb242b8262135dceb591f11b38bcc1806f88b200abe8b85625e8e7c6de333b5b",
+  "runtime": {
+    "python": "3.10.12",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "observation_angles_deg": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    60
+  ],
+  "file_sha256": {
+    "config.json": "e9547bd28e5b9dfdee0055d5405136a865a2bd39fd05f846e2f1fe38f957f51d",
+    "observations.npz": "28939a403caeb8a54f44a5d67264b08f197f42f0f6e7339bb00732265b1855ed",
+    "trials.csv": "4336bd33adef68bc03f7802cbdf0093297da5a213a7ff7b308d73fb55a8755ed"
+  }
+}
