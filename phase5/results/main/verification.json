@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "paired_trials": 61,
+  "model_cases": 366,
+  "candidates": 18544,
+  "all_test_rollouts": 1098,
+  "tolerance_audit_rows": 732,
+  "weak_operators_checked": 9,
+  "replayed_trial_index": 21,
+  "report_source_sha256": {
+    "phase5/report.py": "8525b97189baae43425319af44d84ce384895d2dac1a8ca7593e6a9c3abbc431",
+    "phase5/verify.py": "d80ad52571b4ce53b52a979086e309ab5fbb28bae4de879cc88567cccdd89651"
+  },
+  "report_artifact_sha256": {
+    "group_summary.csv": "8f81cb28a74cfc8749fe1dd391db3322436891b7d1eb4f8dba00b4429d0573e9",
+    "by_release.csv": "09d9e5e006cc7d2ebe6bc1f385e631b94a94491eda414ce8aeb035e14207c9f0",
+    "paired_contrasts.csv": "3294014bd6e78202d02616258c2d618fd1fad38aa30e223637d20ac8d15ae845",
+    "numerical_summary.json": "e5e1148299813c271ea682cf69d156b1e33f88b281605fd3d77483e5f919d307",
+    "figures/benchmark_outcomes.png": "f4dc40130cfff6b19fb962d844b50203012317cba9f44c65e4dc8dde5e0adb4b",
+    "figures/paired_effects.png": "ef0852605e964a7b56d48e321800abe1a9a2ac48949c399e01f5a3f0c330d3c3",
+    "figures/heldout_example.png": "7aed898a76596baca5e95174daacc77350bc5c69ba79c4b644d6f092000144ed"
+  }
+}

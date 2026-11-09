@@ -1,0 +1,14 @@
+{
+  "file_sha256": {
+    "fit_inputs.json": "36226a100be34653f855c1f06605b5da4c0db6ecd935b13b78a63670ff6be3cc",
+    "config.json": "e9547bd28e5b9dfdee0055d5405136a865a2bd39fd05f846e2f1fe38f957f51d",
+    "observations.npz": "28939a403caeb8a54f44a5d67264b08f197f42f0f6e7339bb00732265b1855ed",
+    "trials.csv": "4336bd33adef68bc03f7802cbdf0093297da5a213a7ff7b308d73fb55a8755ed",
+    "candidates.csv": "f5d85ebf873fa7cb723ce89b8098fe9b0234d085527b8a090a455f876afedb44",
+    "selected_models.csv": "25043d81ed1c831945f3939da7a2a7cbc631d167cc2281816144a7d773d3d50d"
+  },
+  "test_reference_generated": false,
+  "planned_model_cases": 366,
+  "candidate_count": 18544,
+  "selected_model_cases": 366
+}

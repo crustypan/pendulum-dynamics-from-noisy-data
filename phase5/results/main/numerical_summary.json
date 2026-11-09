@@ -1,0 +1,13 @@
+{
+  "primary_rollouts_rechecked": 732,
+  "status_changes": 0,
+  "completed_at_both_tolerances": 621,
+  "max_absolute_theta_rmse_change_rad": 4.174547374447002e-10,
+  "max_absolute_relative_energy_drift_change": 1.5133184660953702e-07,
+  "max_sampled_theta_difference_rad": 7.517659178502001e-08,
+  "reference_max_relative_physical_energy_drift": {
+    "50": 3.413929571029174e-11,
+    "80": 2.890528319054992e-11,
+    "95": 3.305190308170152e-11
+  }
+}
