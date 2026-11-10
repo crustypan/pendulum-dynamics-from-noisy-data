@@ -1,37 +1,46 @@
 # Learning Nonlinear Pendulum Dynamics from Noisy Data
 
-This independent research project asks whether a dynamical model learned from noisy angles can predict an unseen trajectory and satisfy the physical energy law. It compares pendulum baselines, tests sparse identification of nonlinear dynamics (SINDy), and uses Lean 4 to prove how the fitted acceleration changes the reference energy.
+Can a model learned from noisy pendulum angles predict a release angle it has not seen and still obey the pendulum's energy law? I studied this with an ideal, undamped pendulum, where the correct force and energy are known. I began with clean-data baselines, then tested noisy equation fitting, proved the energy law in Lean 4, investigated failed predictions, and compared three fitting methods under a fixed training budget. A completed prediction can still have large physical-energy drift.
 
-- [v1 release · Phases 1–4](https://github.com/crustypan/pendulum-dynamics-from-noisy-data/releases/tag/v1) · [Phase 5 results and figures](phase5/RESULTS.md)
-- [Six-page English research report](report/pdf/research_report.pdf) · [editable source](report/research_report.md)
-- [One-page Research Highlight](report/pdf/research_highlight.pdf) · [editable source](report/research_highlight.md)
-- [Figure and evidence index](report/README.md) · [Data and proof guide](docs/artifact_index.md)
+The observations are simulated. The candidate equation library already contains the sine term. The project tests whether a method selects that term and uses it well; it does not claim to discover the sine function without prior knowledge.
 
-All observations are synthetic. The candidate library includes the sine term. Support recovery measures whether the method selects that supplied term without extra terms.
+- [v1 release: Phases 1–4](https://github.com/crustypan/pendulum-dynamics-from-noisy-data/releases/tag/v1) · [Phase 5 results](phase5/RESULTS.md)
+- [Six-page research report (v1)](report/pdf/research_report.pdf) · [One-page Research Highlight (v1)](report/pdf/research_highlight.pdf)
+- [Data and proof guide](docs/artifact_index.md) · [Figure index](report/README.md#figure-and-evidence-index)
 
-## Physical reference and the research question
+The example below uses four training releases at 5°, 15°, 30°, and 60°. It tests a new 95° release with 2° angle noise (seed 0). All three fitted trajectories complete, but the direct-difference fit has large physical-energy drift. The plot shows the first 3 seconds; the [10-second plot](phase5/results/main/figures/heldout_example.png) and [metrics](phase5/results/main/test_metrics.csv) are archived.
 
-For an ideal, undamped pendulum released from rest, let $\theta$ be the angle from the downward vertical, $\omega=\dot\theta$, and $k=g/L=9.81\,\mathrm{s^{-2}}$. Torque balance gives the reference dynamics
+[![Predicted angle and physical-energy deviation for a held-out 95-degree release](figures/overview/heldout_95deg.png)](figures/overview/heldout_95deg.png)
 
-$$
-\dot\theta=\omega,\qquad \dot\omega=-k\sin\theta.
-$$
-
-The measured input is **angle alone**. Velocity and acceleration must be estimated from it or eliminated by integration. A learned equation is assessed on three separate outcomes: which terms it selects, how it predicts an unseen release, and whether it respects the reference physical-energy law.
-
-[![Ideal pendulum and physical energy at the 95-degree held-out release](figures/overview/pendulum_reference.png)](figures/overview/pendulum_reference.png)
-
-*Figure 1. The physical reference for the Phase 5 example. The 95° release is a held-out test, not a training angle.*
-
-The following two-panel result uses four **wide-angle training releases** (5°, 15°, 30°, 60°), 2° angle noise, and seed 0. It shows only the first 3 seconds of the 95° held-out test; the [full 10-second result](phase5/results/main/figures/heldout_example.png) is archived separately.
-
-[![Held-out predicted angles and physical-energy deviation at a 95-degree release](figures/overview/heldout_95deg.png)](figures/overview/heldout_95deg.png)
-
-*Figure 2. All three fitted paths complete, but the direct-difference model has large physical-energy drift. Completion alone is not a physics check. [Saved metrics](phase5/results/main/test_metrics.csv) · [Figure source](figures/overview/make_overview.py).*
+*Figure 1. A completed prediction is not necessarily a physical prediction. [Plot source](figures/overview/make_overview.py).*
 
 ## Results at a glance
 
-Click any figure to open the full-size PNG.
+Click a figure for its full-size PNG. Source data and scripts are linked in the sections below.
+
+### Phase 1. Predicting unseen angles
+
+[![Held-out angle RMSE for linear, sine and cubic pendulum models at 45, 75 and 90 degrees](figures/baseline/test_rmse.png)](figures/baseline/test_rmse.png)
+
+The fitted sine model averages about 1.1–1.2 × 10⁻⁶ rad in held-out angle RMSE. The linear and cubic fits have larger errors at higher release angles.
+
+### Phase 2. Recovering an equation from noisy angles
+
+[![Noise robustness of SINDy showing test error, sine-only recovery, coefficient error and completion](figures/noise_sindy/noise_robustness.png)](figures/noise_sindy/noise_robustness.png)
+
+Of 120 noisy fits per method, Savitzky–Golay recovered sine-only support in 31; central differences recovered it in 0. The test RMSE panel includes only seeds that completed all three test angles.
+
+### Phase 3. Comparing fitted and physical energy
+
+[![At 90 degrees the linear model has small variation in its own energy and large variation in physical energy](figures/energy_drift/baseline_conservation.png)](figures/energy_drift/baseline_conservation.png)
+
+At 90° with Training A, the linear model's own energy changes by at most 4.16 × 10⁻¹¹ of its initial value in the sampled trajectory. The corresponding physical energy change is 20.0%. See the [Lean energy proofs](lean/Pendulum/Energy.lean) and [SINDy drift comparison](figures/energy_drift/physical_energy_drift.png).
+
+### Phase 4. Diagnosing failed SINDy predictions
+
+[![Fitted and reference release accelerations and guard stops by held-out release angle](figures/failure_diagnostics/failure_mechanisms.png)](figures/failure_diagnostics/failure_mechanisms.png)
+
+Both solver settings reproduced the 100 rad/s speed limit in all 98 stopped rollouts; 97 began at 75° or 90°. The left panel shows a fit that predicts outward acceleration at 90° despite low validation error.
 
 ### Phase 5. Training-angle coverage and weak-form SINDy
 
@@ -49,72 +58,105 @@ The table pools the three noisy conditions at the primary 80° and 95° releases
 
 Among matched trajectories that both methods completed, weak-form SINDy reduced the mean angle RMSE relative to Savitzky–Golay by 0.325 rad in the narrow design and 0.170 rad in the wide design. The wide direct-difference fits completed all 120 primary tests, with a median maximum physical energy deviation of 39.24 times the initial energy.
 
-[![Paired differences in state-limit stops and angle RMSE with 95% bootstrap intervals](phase5/results/main/figures/paired_effects.png)](phase5/results/main/figures/paired_effects.png)
+[Paired-effects figure with 95% bootstrap intervals](phase5/results/main/figures/paired_effects.png)
 
 The complete archive includes all 1,098 test outcomes and 732 tighter-tolerance checks. [Phase 5 report](phase5/RESULTS.md) · [95° trajectory and energy example](phase5/results/main/figures/heldout_example.png) · [Paired comparison table](phase5/results/main/paired_contrasts.csv)
 
-### 1. Predicting motion at unseen release angles
+## Physical model
 
-[![Held-out angle RMSE for linear, sine and cubic pendulum models at 45, 75 and 90 degrees](figures/baseline/test_rmse.png)](figures/baseline/test_rmse.png)
-
-The fitted sine model averages about 1.1–1.2 × 10⁻⁶ rad in held-out angle RMSE. The linear and cubic fits have larger errors at higher release angles.
-
-### 2. Recovering an equation from noisy angles
-
-[![Noise robustness of SINDy showing test error, sine-only recovery, coefficient error and completion](figures/noise_sindy/noise_robustness.png)](figures/noise_sindy/noise_robustness.png)
-
-Of 120 noisy fits per method, Savitzky–Golay recovered sine-only support in 31; central differences recovered it in 0. The test RMSE panel includes only seeds that completed all three test angles.
-
-### 3. Comparing fitted and physical energy
-
-[![At 90 degrees the linear model has small variation in its own energy and large variation in physical energy](figures/energy_drift/baseline_conservation.png)](figures/energy_drift/baseline_conservation.png)
-
-At 90° with Training A, the linear model's own energy changes by at most 4.16 × 10⁻¹¹ of its initial value in the sampled trajectory. The corresponding physical energy change is 20.0%. See the [Lean energy proofs](lean/Pendulum/Energy.lean) and [SINDy drift comparison](figures/energy_drift/physical_energy_drift.png).
-
-### 4. Diagnosing failed SINDy predictions
-
-[![Fitted and reference release accelerations and guard stops by held-out release angle](figures/failure_diagnostics/failure_mechanisms.png)](figures/failure_diagnostics/failure_mechanisms.png)
-
-Both solver settings reproduced the 100 rad/s speed limit in all 98 stopped rollouts; 97 began at 75° or 90°. The left panel shows a fit that predicts outward acceleration at 90° despite low validation error.
-
-See the [figure and evidence index](report/README.md#figure-and-evidence-index) for the other plots and their source data.
-
-## What was fitted, and why noise matters
-
-Phase 1 compares three **preselected** acceleration families: $-a\theta$ (small-angle linear), $-a\sin\theta$ (the ideal force's functional form), and $-a\theta-b\theta^3$ (a local Taylor-like alternative). Their coefficients are fitted from clean trajectories. This tests extrapolation of specified equations; it does not discover a function without prior assumptions. The 45°, 75°, and 90° tests follow training releases at 5°, 15°, 30° (Training A), with an additional 60° release in Training B. Since Training B also has one more trajectory, Phase 1 alone cannot isolate the effect of angle coverage.
-
-Phases 2 and 5 fit sparse equations from the supplied library $\{\theta,\theta^3,\sin\theta,\omega\}$:
+I use a point mass $m$ on a massless rigid rod of length $L=1\,\mathrm{m}$. The pendulum moves in one plane with no friction or external drive. Let $\theta$ be the angle from the downward vertical and $\omega=\dot\theta$. Gravity has tangential torque $\tau_g=-mgL\sin\theta$. Since the moment of inertia is $I=mL^2$,
 
 $$
-\dot\omega=c_1\theta+c_2\theta^3+c_3\sin\theta+c_4\omega.
+I\dot\omega=\tau_g,\qquad
+\dot\theta=\omega,\qquad
+\dot\omega=-k\sin\theta,\qquad k=\frac{g}{L}=9.81\,\mathrm{s}^{-2}.
 $$
 
-Direct second differences divide by the squared 0.02-second sampling interval, magnifying angle noise. Savitzky–Golay instead differentiates a polynomial fitted within a moving window. Phase 5 adds a weak form: smooth test functions are integrated against the equation, and integration by parts transfers time derivatives from noisy observations to the known test functions. All three methods use validation trajectories to select model settings before held-out tests. Phase 5 fixes the training budget at four trajectories per design, changing only angle coverage.
+[![Ideal pendulum at a 95-degree release, with gravity and physical energy](figures/overview/pendulum_reference.png)](figures/overview/pendulum_reference.png)
 
-## What Lean proves about physical energy
+*Figure 2. Sign convention and physical reference. The 95° release is a Phase 5 test angle, not a training angle.*
 
-For the reference pendulum, physical energy per unit moment of inertia is
+The sine comes from the direction of gravity relative to the rod. Replacing $\sin\theta$ with $\theta$ is a small-angle approximation, so I expected it to fail at large releases. The cubic Taylor approximation, $\sin\theta\approx\theta-\theta^3/6$, gives a second local alternative. These physical approximations determined the three model families in Phase 1; their coefficients were then fitted from angle data.
+
+Kinetic energy is $mL^2\omega^2/2$ and potential energy above the hanging position is $mgL(1-\cos\theta)$. Dividing by $mL^2$ gives physical energy per unit moment of inertia:
 
 $$
 E_{\mathrm{phys}}(\theta,\omega)=\frac{\omega^2}{2}+k(1-\cos\theta).
 $$
 
-Lean 4 and Mathlib prove, under the stated differentiability and equation assumptions, that any candidate acceleration $f(\theta,\omega)$ has rate
+For a candidate acceleration $\dot\omega=f(\theta,\omega)$, the chain rule gives
 
 $$
 \frac{dE_{\mathrm{phys}}}{dt}=\omega\bigl[f(\theta,\omega)+k\sin\theta\bigr].
 $$
 
-Substituting the ideal law makes this rate zero, and an interval theorem proves conservation along an exact solution. For the fitted four-term equation, Lean also proves that the physical-energy rate vanishes at **every real state** exactly when $c_1=c_2=c_4=0$ and $c_3=-k$. The 244 archived Phase 2 coefficient vectors are covered through an indexed theorem. These are conditional mathematical results; the sampled energy plots and solver checks separately assess numerical trajectories. A fitted model can conserve its **own** energy while drifting in the physical energy of the reference pendulum. [Proof source](lean/Pendulum/Energy.lean) · [Detailed audit](docs/phase3_results.md)
+This rate is zero for the ideal force $f=-k\sin\theta$. I use the same physical energy to check every fitted model, even when a model has a different energy of its own.
 
-The benchmark uses simulated angles, a known ideal pendulum, and a library that already contains $\sin\theta$. The conclusions do not yet establish performance on real sensors or outside these sampling, noise, and coverage choices. The [v1 report](report/pdf/research_report.pdf) covers Phases 1–4; [Phase 5](phase5/RESULTS.md) is the subsequent controlled comparison.
+## How the study developed
 
-## What v1 found
+### Phase 1 — Clean-data baseline
 
-- **Phase 1 — baselines.** The fitted sine model has a mean held-out angle RMSE of about 1.1e-6 rad. The linear model's own energy is conserved in its exact dynamics, while its sampled physical energy varies by 20.0% at a 90° release in Training A.
-- **Phase 2 — noisy identification.** Savitzky–Golay preprocessing recovers the sine-only support in 31 of 120 noisy fits; direct central differences recover it in 0 of 120. Of 732 held-out rollouts, 634 complete and 98 reach a state limit.
-- **Phase 3 — formal verification.** Lean checks the physical energy rate, interval conservation and the exact coefficient condition for zero physical energy rate at every state. The 13-theorem audit covers the 244 archived models through an indexed theorem. All 634 completed pairs pass the shared-grid solver comparison.
-- **Phase 4 — failure analysis.** Both solver settings reproduce the speed guard in all 98 stopped rollouts. There are 97 stops at 75° or 90°, and 85 stops occur with zero or negative velocity coefficients. The [analysis](docs/phase4_failure_analysis.md) traces examples to derivative noise, weak separation of library terms and incorrect extrapolated acceleration.
+I first asked how much the force law matters when measurement noise is absent. The three chosen acceleration families were $-a\theta$, $-a\sin\theta$, and $-a\theta-b\theta^3$. A five-point central difference estimated acceleration from sampled angles, and least squares fitted the coefficients. Each trajectory started from rest, ran for 10 seconds, and was sampled every 0.02 seconds. Training A used 5°, 15°, and 30° releases; Training B added 60°. Validation used 10° and 20°; tests used 45°, 75°, and 90°.
+
+At the 90° test under Training A, the sine fit had angle RMSE $1.43\times10^{-6}\,\mathrm{rad}$, compared with $1.73\,\mathrm{rad}$ for the linear fit and $0.322\,\mathrm{rad}$ for the cubic fit. This agrees with the physical expectation: a local approximation is unreliable far from the hanging position. Training B changed both the number of trajectories and the angular range. I could not attribute any improvement to coverage alone, which motivated the fixed-budget design in Phase 5. [Saved coefficients and errors](results/baseline/metrics.csv)
+
+### Phase 2 — Learning from noisy angles
+
+I then added independent Gaussian noise to each measured angle, with standard deviation 0°, 0.5°, 2°, or 5°. There was one clean run and 20 noise realizations at each positive level. The same noisy observations were used when comparing derivative estimators. Model settings were selected on the 10° and 20° validation releases before testing the frozen equations at 45°, 75°, and 90°.
+
+Sparse Identification of Nonlinear Dynamics (SINDy) fitted coefficients from the supplied library $\{\theta,\theta^3,\sin\theta,\omega\}$:
+
+$$
+\dot\omega=c_1\theta+c_2\theta^3+c_3\sin\theta+c_4\omega.
+$$
+
+Direct differences estimate acceleration by dividing a second angle difference by the squared 0.02-second interval. This greatly magnifies noise: at 2° angle noise, the estimated acceleration-noise scale is about $214\,\mathrm{rad/s^2}$, while the reference acceleration is at most about $10\,\mathrm{rad/s^2}$. Savitzky–Golay smoothing instead differentiates a polynomial fitted in a local time window. Across 120 noisy fits per method, smoothing selected only the sine term in 31; direct differences did so in none. Of 732 held-out trajectories, 634 completed and 98 hit a predefined state limit. Stopped paths are reported separately from angle-error summaries. [Method and noise breakdown](docs/phase2_results.md)
+
+### Phase 3 — Proving and measuring energy change
+
+Lean 4 and Mathlib check the energy-rate formula above under explicit differentiability and differential-equation assumptions. Substituting the ideal force gives zero rate; a separate interval theorem proves conservation along an exact solution. For a fitted four-term law, Lean gives
+
+$$
+\frac{dE_{\mathrm{phys}}}{dt}
+=\omega\bigl[c_1\theta+c_2\theta^3+(c_3+k)\sin\theta+c_4\omega\bigr].
+$$
+
+The rate is zero at every real state exactly when $c_1=c_2=c_4=0$ and $c_3=-k$. One indexed theorem applies this result to the 244 archived Phase 2 coefficient vectors, represented as exact rationals. The proof does not certify that a fitted law describes the real pendulum or that a numerical solver is exact.
+
+A model can conserve its own energy and still violate the reference energy law. For this fitted library, its own energy satisfies
+
+$$
+E_{\mathrm{fit}}=\frac{\omega^2}{2}-\frac{c_1\theta^2}{2}-\frac{c_2\theta^4}{4}+c_3(\cos\theta-1),
+\qquad \frac{dE_{\mathrm{fit}}}{dt}=c_4\omega^2.
+$$
+
+Thus $c_4=0$ gives conservation of $E_{\mathrm{fit}}$, even if the model has the wrong physical potential. For example, the Phase 1 linear fit at 90° changes its own sampled energy by at most $4.16\times10^{-11}$ of its initial value, while its sampled physical energy changes by about 20.0%. I report numerical drift over the saved times as
+
+$$
+D_E=\frac{\max_i|E_{\mathrm{phys}}(t_i)-E_{\mathrm{phys}}(0)|}{E_{\mathrm{phys}}(0)}.
+$$
+
+This sampled diagnostic is not a bound for every time. [Lean source](lean/Pendulum/Energy.lean) · [Proof and numerical audit](docs/phase3_results.md)
+
+### Phase 4 — Investigating stopped predictions
+
+The 98 stopped Phase 2 tests might have been caused by the numerical solver rather than the fitted equations. I kept the equations fixed and replayed every stopped test with tighter tolerances. All 98 again reached the $100\,\mathrm{rad/s}$ angular-speed guard; 97 started at 75° or 90°. The guard is a numerical stop rule, not a physical speed limit. By comparison, an ideal pendulum released from rest at or below 90° has maximum speed $\sqrt{2k}\approx4.43\,\mathrm{rad/s}$.
+
+One frozen fit had only about $0.0407\,\mathrm{rad}$ validation error but predicted outward acceleration of $+4.08\,\mathrm{rad/s^2}$ at 90°. The reference predicts $-9.81\,\mathrm{rad/s^2}$. Near small angles, $\theta$ and $\sin\theta$ are similar, so large fitted coefficients can cancel on validation data and separate at a large test angle. The energy-rate formula then shows how the wrong force changes physical energy. This gave a physical explanation for a failure that angle error on the validation set did not reveal. [Frozen-model analysis](docs/phase4_failure_analysis.md)
+
+### Phase 5 — Testing coverage with a fixed data budget
+
+Phase 1 could not separate training coverage from training count. I therefore used four trajectories in each Phase 5 design: 5°, 15°, 25°, 30° for narrow coverage and 5°, 15°, 30°, 60° for wide coverage. Validation remained at 10° and 20°. The new tests were 50°, 80°, and 95°, with 80° and 95° as the primary comparison. The methods used matched noise realizations and the same number of observed samples.
+
+I compared direct differences, Savitzky–Golay differentiation, and weak-form SINDy. In the weak form, smooth test functions are integrated against the equation; integration by parts transfers time derivatives from noisy measurements to known test functions. All methods used the same four-term candidate library and validation-based selection. The study selected 366 models and planned 1,098 held-out trajectories. Of these, 986 completed and 112 hit a state limit.
+
+Wide coverage removed all 88 direct-difference stops seen in the narrow design's 120 primary tests, but the wide direct fits had a median maximum physical-energy deviation of 39.24 times the initial energy among completed primary tests. On paired trajectories that both methods completed, weak-form SINDy reduced mean angle RMSE relative to Savitzky–Golay by $0.325\,\mathrm{rad}$ for narrow coverage and $0.170\,\mathrm{rad}$ for wide coverage. At 5° noise, sine-only recovery remained low even for weak-form fitting (2/20 narrow and 1/20 wide). All 732 primary tests kept the same completion status when replayed at tighter solver tolerances. [Protocol](phase5/PROTOCOL.md) · [Full tables and intervals](phase5/RESULTS.md)
+
+## Interpretation and limits
+
+The five phases answer different parts of the same question. The clean-data test shows why the sine force matters at large angles. The noisy-data test shows how second differentiation can damage equation selection. The Lean proof states the energy law precisely, and the frozen-model replay links wrong extrapolated force to stopped predictions. Phase 5 controls the training budget and shows that fewer stops do not guarantee a physically sound equation.
+
+I report equation support, trajectory error and completion, and physical-energy deviation separately. This is a synthetic benchmark with known initial conditions and a candidate library that includes $\sin\theta$. It has not been tested on a real sensor. Different sampling rates, noise structures, and independent high-angle validation are useful next tests. The [six-page report](report/pdf/research_report.pdf) and [Research Highlight](report/pdf/research_highlight.pdf) cover v1 (Phases 1–4); [Phase 5](phase5/RESULTS.md) is documented separately.
 
 ## Repository map
 
