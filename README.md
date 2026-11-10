@@ -2,12 +2,32 @@
 
 This independent research project asks whether a dynamical model learned from noisy angles can predict an unseen trajectory and satisfy the physical energy law. It compares pendulum baselines, tests sparse identification of nonlinear dynamics (SINDy), and uses Lean 4 to prove how the fitted acceleration changes the reference energy.
 
-- [v1 release · Phases 1–4](https://github.com/crustypan/physics-lean4/releases/tag/v1) · [Phase 5 results and figures](phase5/RESULTS.md)
+- [v1 release · Phases 1–4](https://github.com/crustypan/pendulum-dynamics-from-noisy-data/releases/tag/v1) · [Phase 5 results and figures](phase5/RESULTS.md)
 - [Six-page English research report](report/pdf/research_report.pdf) · [editable source](report/research_report.md)
 - [One-page Research Highlight](report/pdf/research_highlight.pdf) · [editable source](report/research_highlight.md)
 - [Figure and evidence index](report/README.md) · [Data and proof guide](docs/artifact_index.md)
 
 All observations are synthetic. The candidate library includes the sine term. Support recovery measures whether the method selects that supplied term without extra terms.
+
+## Physical reference and the research question
+
+For an ideal, undamped pendulum released from rest, let $\theta$ be the angle from the downward vertical, $\omega=\dot\theta$, and $k=g/L=9.81\,\mathrm{s^{-2}}$. Torque balance gives the reference dynamics
+
+$$
+\dot\theta=\omega,\qquad \dot\omega=-k\sin\theta.
+$$
+
+The measured input is **angle alone**. Velocity and acceleration must be estimated from it or eliminated by integration. A learned equation is assessed on three separate outcomes: which terms it selects, how it predicts an unseen release, and whether it respects the reference physical-energy law.
+
+[![Ideal pendulum and physical energy at the 95-degree held-out release](figures/overview/pendulum_reference.png)](figures/overview/pendulum_reference.png)
+
+*Figure 1. The physical reference for the Phase 5 example. The 95° release is a held-out test, not a training angle.*
+
+The following two-panel result uses four **wide-angle training releases** (5°, 15°, 30°, 60°), 2° angle noise, and seed 0. It shows only the first 3 seconds of the 95° held-out test; the [full 10-second result](phase5/results/main/figures/heldout_example.png) is archived separately.
+
+[![Held-out predicted angles and physical-energy deviation at a 95-degree release](figures/overview/heldout_95deg.png)](figures/overview/heldout_95deg.png)
+
+*Figure 2. All three fitted paths complete, but the direct-difference model has large physical-energy drift. Completion alone is not a physics check. [Saved metrics](phase5/results/main/test_metrics.csv) · [Figure source](figures/overview/make_overview.py).*
 
 ## Results at a glance
 
@@ -59,6 +79,36 @@ Both solver settings reproduced the 100 rad/s speed limit in all 98 stopped roll
 
 See the [figure and evidence index](report/README.md#figure-and-evidence-index) for the other plots and their source data.
 
+## What was fitted, and why noise matters
+
+Phase 1 compares three **preselected** acceleration families: $-a\theta$ (small-angle linear), $-a\sin\theta$ (the ideal force's functional form), and $-a\theta-b\theta^3$ (a local Taylor-like alternative). Their coefficients are fitted from clean trajectories. This tests extrapolation of specified equations; it does not discover a function without prior assumptions. The 45°, 75°, and 90° tests follow training releases at 5°, 15°, 30° (Training A), with an additional 60° release in Training B. Since Training B also has one more trajectory, Phase 1 alone cannot isolate the effect of angle coverage.
+
+Phases 2 and 5 fit sparse equations from the supplied library $\{\theta,\theta^3,\sin\theta,\omega\}$:
+
+$$
+\dot\omega=c_1\theta+c_2\theta^3+c_3\sin\theta+c_4\omega.
+$$
+
+Direct second differences divide by the squared 0.02-second sampling interval, magnifying angle noise. Savitzky–Golay instead differentiates a polynomial fitted within a moving window. Phase 5 adds a weak form: smooth test functions are integrated against the equation, and integration by parts transfers time derivatives from noisy observations to the known test functions. All three methods use validation trajectories to select model settings before held-out tests. Phase 5 fixes the training budget at four trajectories per design, changing only angle coverage.
+
+## What Lean proves about physical energy
+
+For the reference pendulum, physical energy per unit moment of inertia is
+
+$$
+E_{\mathrm{phys}}(\theta,\omega)=\frac{\omega^2}{2}+k(1-\cos\theta).
+$$
+
+Lean 4 and Mathlib prove, under the stated differentiability and equation assumptions, that any candidate acceleration $f(\theta,\omega)$ has rate
+
+$$
+\frac{dE_{\mathrm{phys}}}{dt}=\omega\bigl[f(\theta,\omega)+k\sin\theta\bigr].
+$$
+
+Substituting the ideal law makes this rate zero, and an interval theorem proves conservation along an exact solution. For the fitted four-term equation, Lean also proves that the physical-energy rate vanishes at **every real state** exactly when $c_1=c_2=c_4=0$ and $c_3=-k$. The 244 archived Phase 2 coefficient vectors are covered through an indexed theorem. These are conditional mathematical results; the sampled energy plots and solver checks separately assess numerical trajectories. A fitted model can conserve its **own** energy while drifting in the physical energy of the reference pendulum. [Proof source](lean/Pendulum/Energy.lean) · [Detailed audit](docs/phase3_results.md)
+
+The benchmark uses simulated angles, a known ideal pendulum, and a library that already contains $\sin\theta$. The conclusions do not yet establish performance on real sensors or outside these sampling, noise, and coverage choices. The [v1 report](report/pdf/research_report.pdf) covers Phases 1–4; [Phase 5](phase5/RESULTS.md) is the subsequent controlled comparison.
+
 ## What v1 found
 
 - **Phase 1 — baselines.** The fitted sine model has a mean held-out angle RMSE of about 1.1e-6 rad. The linear model's own energy is conserved in its exact dynamics, while its sampled physical energy varies by 20.0% at a 90° release in Training A.
@@ -79,7 +129,7 @@ See the [figure and evidence index](report/README.md#figure-and-evidence-index) 
 | `lean/Pendulum/Energy.lean`, `lean/Pendulum/FrozenModels.lean` | General energy proofs and their specialization to the frozen coefficient table |
 | `lean/Audit.lean`, `lean/lean-toolchain`, `lean/lake-manifest.json` | Theorem dependency audit and exact Lean/Mathlib pins |
 | `results/` | Coefficients, traces, metrics, checksums and verification records; see the [data guide](docs/artifact_index.md) |
-| `figures/` | Seven full-size figures generated from the saved experiments |
+| `figures/` | Full-size experiment figures and the two overview images; `figures/overview/make_overview.py` regenerates the latter |
 | `report/` | Both PDFs, editable Markdown and the reproducible build receipt |
 | `docs/` | [Study plan](docs/research_plan.md), [experiment log](docs/experiment_log.md), [research decisions](docs/research_decisions.md), and phase protocols |
 
@@ -149,6 +199,14 @@ python3 -B scripts/verify_lean.py --output .tmp/reproduce/lean_verification
 ```
 
 The [saved proof audit](results/lean_verification/verification.json) lists the compiler versions, source hashes, package revisions and theorem dependencies. The formal guarantees apply to exact trajectories satisfying the stated hypotheses. Sampled drift is a numerical diagnostic.
+
+### Overview figures
+
+After installing the pinned Python dependencies above, regenerate Figures 1 and 2 from the archived Phase 5 results:
+
+```bash
+python3 -B scripts/run_isolated.py -- .venv/bin/python -B figures/overview/make_overview.py
+```
 
 ### PDFs and archive verification
 
